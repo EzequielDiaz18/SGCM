@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block contenido %}<h1>Gestión de citas</h1>
+{% if usuario.rol in ["admin","paciente"] %}<section class="panel"><h2>Agendar cita</h2><form method="post" action="/citas">
+{% if rol == "admin" %}<label>Paciente</label><select name="id_paciente" required>{% for p in pacientes %}<option value="{{ p.id_paciente }}">{{ p.nombre }}</option>{% endfor %}</select>{% endif %}
+<label>Médico</label><select name="id_medico" required>{% for m in medicos %}<option value="{{ m.id_medico }}">{{ m.nombre }}</option>{% endfor %}</select>
+<label>Fecha y hora</label><input type="datetime-local" name="fecha_hora" required>
+<label>Motivo</label><input name="motivo" maxlength="255" required><button>Agendar</button></form></section>{% endif %}
+<div class="tabla"><table><tr><th>Fecha</th><th>Paciente</th><th>Médico</th><th>Motivo</th><th>Estado</th><th>Acción</th></tr>
+{% for c in citas %}<tr><td>{{ c.fecha_hora }}</td><td>{{ c.paciente }}</td><td>{{ c.medico }}</td><td>{{ c.motivo }}</td><td>{{ c.estado }}</td><td>
+{% if c.estado not in ["Cancelada","Atendida"] %}<form method="post" action="/citas/{{ c.id_cita }}/cancelar"><button class="peligro">Cancelar</button></form>{% else %}—{% endif %}</td></tr>
+{% else %}<tr><td colspan="6">No hay citas registradas.</td></tr>{% endfor %}</table></div>{% endblock %}

@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block contenido %}<h1>Reportes</h1><div class="dos-columnas"><section class="panel"><h2>Citas por estado</h2><table><tr><th>Estado</th><th>Total</th></tr>{% for r in por_estado %}<tr><td>{{ r.estado }}</td><td>{{ r.total }}</td></tr>{% endfor %}</table></section>
+<section class="panel"><h2>Citas por médico</h2><table><tr><th>Médico</th><th>Total</th></tr>{% for r in por_medico %}<tr><td>{{ r.medico }}</td><td>{{ r.total }}</td></tr>{% endfor %}</table></section></div>{% endblock %}

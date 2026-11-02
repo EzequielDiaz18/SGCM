@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block contenido %}<h1>Pacientes</h1><div class="tabla"><table><tr><th>ID</th><th>Nombre</th><th>Nacimiento</th><th>Correo</th><th>Teléfono</th><th></th></tr>
+{% for p in pacientes %}<tr><td>{{ p.id_paciente }}</td><td>{{ p.nombre }}</td><td>{{ p.fecha_nacimiento }}</td><td>{{ p.correo }}</td><td>{{ p.telefono or "—" }}</td>
+<td><form method="post" action="/pacientes/{{ p.id_paciente }}/eliminar" onsubmit="return confirm('¿Eliminar este paciente?')"><button class="peligro">Eliminar</button></form></td></tr>{% else %}<tr><td colspan="6">No hay pacientes registrados.</td></tr>{% endfor %}</table></div>{% endblock %}

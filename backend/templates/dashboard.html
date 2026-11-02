@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block contenido %}<h1>Panel principal</h1><p>Bienvenido, {{ usuario.nombre }}.</p>
+<div class="tarjetas"><article><span>{{ total }}</span><p>{% if usuario.rol == "admin" %}Citas registradas{% else %}Tus citas{% endif %}</p></article>
+{% if usuario.rol == "admin" %}<article><span>{{ pacientes }}</span><p>Pacientes</p></article><article><span>{{ medicos }}</span><p>Médicos</p></article>{% endif %}</div>
+<div class="acciones"><a class="boton" href="/citas">Consultar citas</a><a class="boton secundario" href="/medicos">Ver médicos</a></div>{% endblock %}

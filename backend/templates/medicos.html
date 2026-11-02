@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block contenido %}<h1>Médicos y especialidades</h1><div class="tabla"><table><tr><th>Nombre</th><th>Especialidad</th><th>Cédula</th><th>Consultorio</th><th>Correo</th></tr>
+{% for m in medicos %}<tr><td>{{ m.nombre }}</td><td>{{ m.especialidad }}</td><td>{{ m.cedula }}</td><td>{{ m.consultorio }}</td><td>{{ m.correo }}</td></tr>{% else %}<tr><td colspan="5">No hay médicos registrados.</td></tr>{% endfor %}</table></div>
+{% if usuario.rol == "admin" %}<div class="dos-columnas"><section class="panel"><h2>Registrar médico</h2><form method="post" action="/medicos">
+<label>Nombre</label><input name="nombre" required><label>Cédula</label><input name="cedula" required>
+<label>Consultorio</label><input name="consultorio" required><label>Correo</label><input type="email" name="correo" required>
+<label>Contraseña inicial</label><input type="password" name="contrasena" required minlength="8">
+<label>Especialidad</label><select name="id_especialidad" required>{% for e in especialidades %}<option value="{{ e.id_especialidad }}">{{ e.nombre }}</option>{% endfor %}</select>
+<button>Guardar médico</button></form></section><section class="panel"><h2>Nueva especialidad</h2><form method="post" action="/especialidades"><label>Nombre</label><input name="nombre" required><button>Agregar especialidad</button></form></section></div>{% endif %}{% endblock %}
