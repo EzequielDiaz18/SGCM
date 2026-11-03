@@ -10,6 +10,12 @@ from pwdlib import PasswordHash
 from psycopg.errors import UniqueViolation, ForeignKeyViolation
 from backend.database.connection import obtener_conexion
 from dotenv import load_dotenv
+from pathlib import Path
+from dotenv import load_dotenv
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env", override=True)
 
 load_dotenv()
 
